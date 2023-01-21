@@ -1,4 +1,5 @@
 
+
     let form = document.querySelector('form')
     console.log(form)
 
@@ -6,6 +7,8 @@
     event.preventDefault()
         
     let obj = {
+        name : form.name.value,
+        number : form.number.value,
         email : form.email.value,
         password : form.password.value
     }
@@ -17,7 +20,7 @@
 let postdata = async (obj)=>{
 
     try {
-        let res = await fetch("http://localhost:8000/users/login",{
+        let res = await fetch("http://localhost:8000/users/register",{
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -27,19 +30,11 @@ let postdata = async (obj)=>{
         if(res){
             let data = await res.json()
             alert(data.msg)
-            localStorage.setItem("token" , data.token)
-            localStorage.setItem("name", data.name)
-
-            if(data.msg === "login successful"){
-            setTimeout(() => {
-                
-                window.location.href="index.html"  
-            }, 1000);
-
-        }
+            window.location="login.html"
         }
     } catch (error) {
-        alert("Something Went Wrong")
+        alert("Something went wrong")
+        console.log("Something went wrong")
         
     }
 }

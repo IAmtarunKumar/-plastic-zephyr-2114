@@ -7,7 +7,8 @@
         
     let obj = {
         email : form.email.value,
-        password : form.password.value
+        password : form.password.value,
+        adminId : form.adminId.value
     }
     console.log(obj)
     postdata(obj)
@@ -17,7 +18,7 @@
 let postdata = async (obj)=>{
 
     try {
-        let res = await fetch("http://localhost:8000/users/login",{
+        let res = await fetch("http://localhost:8000/users/admin",{
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -27,16 +28,14 @@ let postdata = async (obj)=>{
         if(res){
             let data = await res.json()
             alert(data.msg)
+            // save token in localStorage
+            console.log(data.token)
             localStorage.setItem("token" , data.token)
-            localStorage.setItem("name", data.name)
 
-            if(data.msg === "login successful"){
-            setTimeout(() => {
-                
-                window.location.href="index.html"  
-            }, 1000);
+            if(data.msg==="login"){
 
-        }
+            window.location.href="admin.html"
+            }
         }
     } catch (error) {
         alert("Something Went Wrong")

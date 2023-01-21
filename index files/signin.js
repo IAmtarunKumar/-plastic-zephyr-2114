@@ -30,7 +30,15 @@ let postdata = async (obj)=>{
         if(res){
             let data = await res.json()
             alert(data.msg)
-            window.location="login.html"
+
+            
+            if(data.msg === "singup successfull"){
+                setTimeout(() => {
+                    
+                    window.location.href="login.html"  
+                }, 1000);
+
+            }
         }
     } catch (error) {
         alert("Something went wrong")

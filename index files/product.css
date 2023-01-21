@@ -199,6 +199,76 @@ body{
 /* second navbar end  */
 
 
+.product-main{
+	display: flex;
+	background-color: pink;
+}
+
+.product-main>div:nth-child(1){
+	width: 25%;
+	height: 500px;
+	background-color: gray;
+}
+.product-main>div:nth-child(2){
+	width: 75%;
+	
+}
+
+
+/* product api  */
+
+#alldata{
+	display: grid;
+	grid-template-columns:auto auto auto;
+	gap: 10px 10px;
+	margin-left: 20px;
+}
+#alldata>div{
+	border: 1px solid gray;
+	margin: 20px;
+	width:60%;
+	
+	padding: 10px;
+	border-radius: 10px;
+}
+ #alldata>div img{
+	width: 100%;
+	border-radius: 10px;
+ }  
+#alldata>div span{
+	font-family: sans-serif;
+	font-size: 16px;
+	
+	color: black;
+	padding: 5px;
+}
+#alldata>div button{
+	background-color:white;
+	color:white ;
+	font-weight: bold;
+	justify-content: center;
+	background-color: rgb(251, 13, 112);
+	font-size: 20px;
+	text-align: center;
+	margin-top: 10px;
+	padding: 10px;
+	border: none;
+	border-radius: 10px;
+}
+#all{
+	border: none;
+	width: 80%;
+	
+	height: 50px;
+	border-radius: 10px;
+	color: black;
+	font-weight: bold;
+	margin: 30px 30px 0px 30px;
+	font-size: 30px;
+	padding: 10px;
+}
+
+/* product api end  */
 
 
 
