@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin</title>
+  </head>
+  <style>
+    .main {
+      background-color: pink;
+      width: 100%;
+      height: auto;
+      display: flex;
+    }
+    .main > div:nth-child(1) {
+      width: 25%;
+      height: 100%;
+      border: 2px solid red;
+    }
+
+    .main > div:nth-child(2) {
+      width: 75%;
+      height: 100%;
+      border: 2px solid red;
+    }
+    #form1 input {
+      width: 300px;
+      height: 30px;
+      margin-left: 50px;
+      border-radius: 10px;
+
+      border: none;
+      font-size: 15px;
+    }
+    #form1 p {
+      margin-left: 50px;
+      font-size: 20px;
+      /* padding: 10px; */
+      margin-top: -20px;
+    }
+    /* div 2 css  */
+    #alldata{
+        display: grid;
+        grid-template-columns:auto auto auto;
+        gap: 10px 10px;
+        margin-left: 20px;
+    }
+    #alldata>div{
+        border: 1px solid gray;
+        margin: 20px;
+        width:60%;
+        /* text-align: center; */
+        padding: 10px;
+        border-radius: 10px;
+    }
+     #alldata>div img{
+        width: 100%;
+        border-radius: 10px;
+     }  
+    #alldata>div span{
+        font-family: sans-serif;
+        font-size: 16px;
+        /* font-weight: bold; */
+        color: black;
+        /* padding: 20px; */
+    }
+    #alldata>div button{
+        background-color:white;
+        color:  black;
+        background-color: white;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+    #all{
+        border: none;
+        width: 80%;
+        
+        height: 50px;
+        border-radius: 10px;
+        color: black;
+        font-weight: bold;
+        margin: 30px 30px 0px 30px;
+        font-size: 30px;
+        padding: 10px;
+    }
+  </style>
+
+
+
+  <body>
+    <div>
+      <h1>Admin Page</h1>
+    </div>
+    <div>
+      <p>sub headding</p>
+    </div>
+
+    <div class="main">
+      <div>
+
+        <Button id="all">ALL PRODUCT</Button>
+<hr>
+        <Button id="all">ADD PRODUCT</Button>
+        <br><br><br>
+        
+        
+        <form id="form1" action="">
+          <input
+            type="text"
+            name=""
+            id="image"
+            placeholder="Product Image"
+          />
+          <br /><br />
+          <input id="title" type="text" placeholder="Title" /><br /><br />
+          <input id="price" type="number" placeholder="Price" /><br /><br />
+          <input id="discount" type="text" placeholder="Discount" /><br /><br />
+          <input id="category" type="text" placeholder="Category" /><br /><br />
+          <input id="rating" type="text" placeholder="Customer Rating" /><br /><br />
+          <input id="stock" type="number" placeholder="No of Stock" /><br /><br />
+          <input id="size" type="text" placeholder="No of sizes" /><br /><br />
+
+
+          <input type="submit" name="" id="" />
+          <br /><br />
+        </form>
+      </div>
+      <!-- DIV 2  -->
+
+      <div id="alldata">
+        <!-- <div>
+            <img src="https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/b/1/b19722b33049902_1.jpg" alt="">
+            <br>
+            <span>titlee</span><br>
+            <span>title </span> <span>Discount</span><br>
+            <span>rating</span> <span>stock</span><br>
+            <button>add to cart</button>
+        </div>
+        <div>
+            <img src="https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/b/1/b19722b33049902_1.jpg" alt="">
+            <br>
+            <span>titlee</span><br>
+
+            <span>title </span> <span>Discount</span><br>
+            <span>rating</span> <span>stock</span><br>
+            <button>add to cart</button>
+        </div>
+        <div>
+            <img src="https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/b/1/b19722b33049902_1.jpg" alt="">
+            <br>
+            <span>titlee</span><br>
+
+            <span>title </span> <span>Discount</span><br>
+            <span>rating</span> <span>stock</span><br>
+            <button>add to cart</button>
+        </div> -->
+
+
+      </div>
+      <!-- // -->
+    </div>
+  </body>
+</html>
+<script>
+  let form = document.querySelector("#form1");
+  console.log(form);
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let obj = {
+        image : form.image.value,
+      title: form.title.value,
+      price: form.price.value,
+      category: form.category.value,
+      discount: form.discount.value,
+      rating: form.rating.value,
+      stock: form.stock.value,
+      size: form.size.value,
+    };
+    console.log(obj);
+    postdata(obj);
+  });
+
+  let postdata = async (obj) => {
+    try {
+      let res = await fetch("http://localhost:8000/posts/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token"),
+        },
+        body: JSON.stringify(obj),
+      });
+      if (res) {
+        let data = await res.json();
+        alert(data.msg);
+        console.log(data)
+        console.log(data.token)
+      }
+    } catch (error) {
+      alert("Something Went Wrong");
+      console.log(error)
+    }
+  };
+
+// all product 
+
+let all =document.querySelector("#all")
+all.addEventListener("click",()=>{
+    
+    let alldata = async (obj) => {
+    try {
+      let res = await fetch("http://localhost:8000/posts/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token"),
+        },
+        body: JSON.stringify(obj),
+      });
+      if (res) {
+        let data = await res.json();
+        alert("data");
+        console.log(data)
+        appendData(data)
+        // console.log(data.token)
+      }
+    } catch (error) {
+      alert("Something Went Wrong");
+      console.log(error)
+    }
+  };
+  alldata()
+
+  function appendData(data) {
+    let alldata  = document.querySelector("#alldata")
+    alldata.innerHTML=""
+    data.forEach((item)=>{
+    console.log(item)
+     let alldata  = document.querySelector("#alldata")
+       
+     let div = document.createElement("div")
+    div.innerHTML=` 
+            <img src=${item.image} alt="">
+            <br>
+            <div>${item.title} </div><br>
+            <span>MRP :₹${item.price}</span>       &nbsp &nbsp &nbsp             <span>${item.discount}% Off</span>
+            <br>
+            <span>Rating : ${item.rating}</span>   &nbsp &nbsp &nbsp                 <span>(${item.stock})</span><br>
+            <button id="delete" data-id="${item._id}">Delete</button>
+            <button class="update" data-id="${item._id}">Update</button>
+
+        `
+        
+        
+        alldata.append(div)
+    })
+  }
+})
+
+// console.log("tarun")
+// let b = document.querySelectorAll("#delete")
+// console.log(btn1)
+// b.addEventListener("click",()=>{
+//     console.log("delete")
+// })
+
+// let btn =document.querySelector("#delete")
+// btn.addEventListener("click",()=>{
+// console.log("btn")
+// })
+</script>
