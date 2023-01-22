@@ -199,6 +199,28 @@ body{
 /* second navbar end  */
 
 
+/*  slider start  */
+.slide-1{
+    /* position: relative; */
+    height: 100%;
+    width: 100%;
+   
+    border-radius: 20px;
+
+    
+}
+.slide_image{
+    height: 94%;
+    width: 94%; 
+    border-radius: 10px; 
+    /* margin-top: 85px; */
+    margin-left: 3%;
+}
+
+
+/*  slider end  */
+
+
 .product-main{
 	display: flex;
 	background-color: pink;
@@ -206,8 +228,8 @@ body{
 
 .product-main>div:nth-child(1){
 	width: 25%;
-	height: 500px;
-	background-color: gray;
+	height: 600px;
+	background-color: rgb(245, 225, 225);
 }
 .product-main>div:nth-child(2){
 	width: 75%;
@@ -215,7 +237,153 @@ body{
 }
 
 
+
+/* div 1 start  */
+.form-sort{
+	visibility: hidden;
+	position: absolute;
+}
+.form-sort >input{
+	margin-left: 20%;
+}
+
+.price{
+	background-color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 60%;
+	margin-left: 20%;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+ /* price css  */
+.form-price{
+	visibility: hidden;
+	position: absolute;
+}
+.form-price >input{
+	margin-left: 20%;
+}
+
+/* brand css  */
+.brand{
+	background-color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 60%;
+	margin-left: 20%;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+
+.form-brand{
+	visibility: hidden;
+	position: absolute;
+}
+.form-brand >input{
+	margin-left: 20%;
+}
+
+/* discount css  */
+
+.discount{
+	background-color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 60%;
+	margin-left: 20%;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+
+.form-discount{
+	visibility: hidden;
+	position: absolute;
+}
+.form-discount > input{
+	margin-left: 20%;
+}
+
+/* category part start  */
+
+.cat{
+	background-color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 60%;
+	margin-left: 20%;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+
+.form-cat{
+	visibility: hidden;
+	position: absolute;
+}
+.form-cat > input{
+	margin-left: 20%;
+}
+
+/* category part start  */
+
+
+
+
+
+
 /* product api  */
+
+.sort-h1{
+	background-color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 80%;
+	margin-left: 10%;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+
+
+
+/* form -sort first div  */
+.form-sort>div:nth-child(1){
+	/* border: 1px solid red; */
+	background-color: white;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 19px;
+	padding: 10px;
+	border-radius: 10px;
+	border: 3px solid rgba(255, 192, 203, 0.373);
+
+}
+/* form -sort second  div  */
+
+.form-sort>div:nth-child(2){
+	/* border: 1px solid red; */
+	background-color: white;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 19px;
+	padding: 10px;
+	border-radius: 10px;
+	border: 3px solid rgba(255, 192, 203, 0.373);
+
+}
 
 #alldata{
 	display: grid;
