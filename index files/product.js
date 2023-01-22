@@ -25,11 +25,51 @@ setInterval(four,8000)
 setInterval(five,10000)
 
 
-
-
-
 // product slider end 
 
+// search functionality start 
+let bat = [];
+
+let api = async () => {
+  try {
+    let res = await fetch("http://localhost:8000/posts/alldata", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("token"),
+      }
+    //   body: JSON.stringify(obj),
+    });
+    if (res) {
+      let apidata = await res.json();
+      console.log(apidata)
+      bag=apidata
+    
+     setTimeout(() => {
+         appendData(apidata) 
+     }, 1000);
+      
+    //  console.log(data.token)
+    }
+  } catch (error) {
+    alert("Something Went Wrong");
+    console.log(error)
+  }
+};
+
+function search(){
+  let output = document.querySelector("#nav-search").value 
+  let newdata = bag.filter((item)=>{
+    return item.title.toLowerCase().includes(output.toLowerCase())
+  })
+  appendData(newdata)
+}
+
+// search()
+api()
+
+
+// search functionality end 
 
 
 
@@ -558,7 +598,7 @@ let alldata = async () => {
             <span>MRP :₹${item.price}</span>       &nbsp &nbsp &nbsp             <span>${item.discount}% Off</span>
             <br>
             <span>Rating : ${item.rating}</span>   &nbsp &nbsp &nbsp                 <span>(${item.stock})</span><br>
-            <button class="cart" data-id="${item._id}">Add to Bag</button>
+            <button id="cart" data-id="${item._id}">Add to Bag</button>
             
   
         `
@@ -566,19 +606,84 @@ let alldata = async () => {
         
         alldata.append(div)
     })
+
+    let cart_id = document.querySelectorAll("#cart")
+    console.log(cart_id)
+
+    cart_id.forEach((item)=>{
+      item.addEventListener("click",()=>{
+        let id = item.dataset.id
+        console.log(id)
+        cart_data(id)
+      })
+    })
+
   }
   
+
   
-  // console.log("tarun")
-  // let b = document.querySelectorAll("#delete")
-  // console.log(btn1)
-  // b.addEventListener("click",()=>{
-  //     console.log("delete")
-  // })
-  
-  // let btn =document.querySelector("#delete")
-  // btn.addEventListener("click",()=>{
-  // console.log("btn")
-  // })
+ 
   
 
+
+  //cart functionality start
+
+ 
+
+  let cart_data = async (id) => {
+    try {
+      let res = await fetch(`http://localhost:8000/posts/findbyid/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token"),
+        }
+      //   body: JSON.stringify(obj),
+      });
+      if (res) {
+        let data = await res.json();
+        
+      // console.log(data)
+      // alert("cart-data")
+      post_in_cart(data)
+      
+     
+        
+      //  console.log(data.token)
+      }
+    } catch (error) {
+      alert("Something Went Wrong");
+      console.log(error)
+    }
+  };
+  
+//post data in a cart model
+
+  let post_in_cart = async (data) => {
+    console.log(data)
+    try {
+      let res = await fetch("http://localhost:8000/cart/postincart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // "Authorization": localStorage.getItem("token"),
+        },
+        body: JSON.stringify("data"),
+      });
+      if (res) {
+        // let data = await res.json();
+        
+      // console.log(data)
+      alert("cart-data")
+      // console.log(data,"working")
+      //  console.log(data.token)
+      }
+    } catch (error) {
+      alert("Something Went Wrong");
+      console.log(error)
+    }
+  };
+
+
+
+  //cart functionality end

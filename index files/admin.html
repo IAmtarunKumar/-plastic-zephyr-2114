@@ -261,18 +261,50 @@ all.addEventListener("click",()=>{
         
         alldata.append(div)
     })
+
+    let deletebtn = document.querySelectorAll("#delete")
+    // console.log(del)
+    for(let del of deletebtn){
+        del.addEventListener("click",()=>{
+            let id = del.dataset.id
+            console.log(id)
+            deleteproduct(id)
+        })
+    }
   }
 })
 
-// console.log("tarun")
-// let b = document.querySelectorAll("#delete")
-// console.log(btn1)
-// b.addEventListener("click",()=>{
-//     console.log("delete")
-// })
 
-// let btn =document.querySelector("#delete")
-// btn.addEventListener("click",()=>{
-// console.log("btn")
-// })
+
+
+    
+    let deleteproduct = async (id) => {
+    try {
+      let res = await fetch(`http://localhost:8000/posts/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token"),
+        }
+        // ,
+        // body: JSON.stringify(obj),
+      });
+      if (res) {
+        let data = await res.json();
+       
+        console.log(data)
+        // appendData(data)
+        // console.log(data.token)
+        alert("deleted");
+      }
+    } catch (error) {
+      alert("Something Went Wrong");
+      console.log(error)
+    }
+  };
+
+
+
+
+
 </script>
