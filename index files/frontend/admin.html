@@ -8,7 +8,7 @@
   </head>
   <style>
     .main {
-      background-color: pink;
+      /* background-color: pink; */
       width: 100%;
       height: auto;
       display: flex;
@@ -16,22 +16,28 @@
     .main > div:nth-child(1) {
       width: 25%;
       height: 100%;
-      border: 2px solid red;
+      /* border: 2px solid red; */
+      background-color: rgb(242, 107, 129);
+
+      border-radius: 20px;
     }
 
     .main > div:nth-child(2) {
       width: 75%;
       height: 100%;
-      border: 2px solid red;
+      /* border: 2px solid red; */
+      border-radius: 20px;
+      background-color: white;
     }
     #form1 input {
       width: 300px;
       height: 30px;
-      margin-left: 50px;
+      margin-left: 30px;
       border-radius: 10px;
 
+
       border: none;
-      font-size: 15px;
+      font-size: 20px;
     }
     #form1 p {
       margin-left: 50px;
@@ -39,6 +45,7 @@
       /* padding: 10px; */
       margin-top: -20px;
     }
+
     /* div 2 css  */
     #alldata{
         display: grid;
@@ -47,12 +54,13 @@
         margin-left: 20px;
     }
     #alldata>div{
-        border: 1px solid gray;
+        /* border: 1px solid gray; */
         margin: 20px;
         width:60%;
         /* text-align: center; */
-        padding: 10px;
-        border-radius: 10px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     }
      #alldata>div img{
         width: 100%;
@@ -94,16 +102,30 @@
 
   <body>
     <div>
-      <h1>Admin Page</h1>
+      <h1 style="text-align: center;background-color: rgb(245, 20, 57); color: white;padding: 10px;">Admin Page</h1>
     </div>
-    <div>
-      <p>sub headding</p>
-    </div>
+   
+
+  <div style="display: flex; justify-content:space-evenly;align-items: center; background-color: rgba(255, 192, 203, 0.605);">
+    <div >
+    <a style="text-decoration: none; font-family: cursive; color: rgb(248, 14, 53);" href="index.html"><h2>Home</h2></a>
+  </div>
+  <div>
+    <a style="text-decoration: none; font-family: cursive; color: rgb(248, 14, 53);" href="product.html"><h2>Product</h2></a>
+
+  </div>
+  <div>
+    <a style="text-decoration: none; font-family: cursive; color: rgb(248, 14, 53);" href="cartpage.html"><h2>Cart</h2></a>
+
+  </div>
+</div>
+
+   <br>
 
     <div class="main">
       <div>
 
-        <Button id="all">ALL PRODUCT</Button>
+      
 <hr>
         <Button id="all">ADD PRODUCT</Button>
         <br><br><br>
@@ -118,11 +140,11 @@
           />
           <br /><br />
           <input id="title" type="text" placeholder="Title" /><br /><br />
-          <input id="price" type="number" placeholder="Price" /><br /><br />
+          <input id="price" type="text" placeholder="Price" /><br /><br />
           <input id="discount" type="text" placeholder="Discount" /><br /><br />
           <input id="category" type="text" placeholder="Category" /><br /><br />
           <input id="rating" type="text" placeholder="Customer Rating" /><br /><br />
-          <input id="stock" type="number" placeholder="No of Stock" /><br /><br />
+          <input id="stock" type="text" placeholder="No of Stock" /><br /><br />
           <input id="brand" type="text" placeholder="Enter Brand Name" /><br /><br />
 
 
@@ -133,32 +155,7 @@
       <!-- DIV 2  -->
 
       <div id="alldata">
-        <!-- <div>
-            <img src="https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/b/1/b19722b33049902_1.jpg" alt="">
-            <br>
-            <span>titlee</span><br>
-            <span>title </span> <span>Discount</span><br>
-            <span>rating</span> <span>stock</span><br>
-            <button>add to cart</button>
-        </div>
-        <div>
-            <img src="https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/b/1/b19722b33049902_1.jpg" alt="">
-            <br>
-            <span>titlee</span><br>
-
-            <span>title </span> <span>Discount</span><br>
-            <span>rating</span> <span>stock</span><br>
-            <button>add to cart</button>
-        </div>
-        <div>
-            <img src="https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/b/1/b19722b33049902_1.jpg" alt="">
-            <br>
-            <span>titlee</span><br>
-
-            <span>title </span> <span>Discount</span><br>
-            <span>rating</span> <span>stock</span><br>
-            <button>add to cart</button>
-        </div> -->
+        
 
 
       </div>
@@ -172,6 +169,7 @@
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    alert("working")
 
     let obj = {
         image : form.image.value,
@@ -195,7 +193,7 @@
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem("token"),
         },
-        body: JSON.stringify(obj),
+        body: JSON.stringify(obj[0]),
       });
       if (res) {
         let data = await res.json();
@@ -211,8 +209,8 @@
 
 // all product 
 
-let all =document.querySelector("#all")
-all.addEventListener("click",()=>{
+// let all =document.querySelector("#all")
+// all.addEventListener("click",()=>{
     
     let alldata = async (obj) => {
     try {
@@ -226,7 +224,7 @@ all.addEventListener("click",()=>{
       });
       if (res) {
         let data = await res.json();
-        alert("data");
+        // alert("data");
         console.log(data)
         appendData(data)
         // console.log(data.token)
@@ -262,6 +260,26 @@ all.addEventListener("click",()=>{
         alldata.append(div)
     })
 
+
+
+
+
+//update
+let update = document.querySelectorAll(".update")
+    // console.log(del)
+    for(let value of update){
+        value.addEventListener("click",()=>{
+            let id = value.dataset.id
+            window.location.href="adminUpdate.html"
+            // console.log(id)
+            // deleteproduct(id)
+            localStorage.setItem("updateid",JSON.stringify(id))
+        })
+    }
+
+
+// delete funcationality start 
+
     let deletebtn = document.querySelectorAll("#delete")
     // console.log(del)
     for(let del of deletebtn){
@@ -271,8 +289,11 @@ all.addEventListener("click",()=>{
             deleteproduct(id)
         })
     }
+
+
+
   }
-})
+
 
 
 
@@ -303,7 +324,7 @@ all.addEventListener("click",()=>{
     }
   };
 
-
+// delete functionality end 
 
 
 
