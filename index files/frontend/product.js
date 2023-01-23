@@ -16,6 +16,10 @@ function five(){
 }
 
 
+let sign = document.querySelector("#sign")
+sign.addEventListener("click",()=>{
+  window.location="login.html"
+})
 
 
 setInterval(one,2000)
@@ -296,7 +300,7 @@ filterbrand.forEach((item)=>{
     // console.log(item.id)
 
     let obj = {
-      "499" : "http://localhost:8000/posts/499",
+      "latus" : "http://localhost:8000/posts/499",
       "999" : "http://localhost:8000/posts/999",
       "1999" : "http://localhost:8000/posts/1999",
       "2999" : "http://localhost:8000/posts/2999",
@@ -358,6 +362,10 @@ let discountsort = document.querySelector(".discount")
 console.log(discountsort)
 discountsort.addEventListener("click",()=>{
 // console.log("working")
+///
+// let alldatas = document.querySelector("#alldata")
+// alldatas.innerHTML=""
+///
 
 if(discountx==true){
 let h1 = document.querySelector(".form-discount")
@@ -390,16 +398,18 @@ filterdiscount.forEach((item)=>{
   item.addEventListener("change",()=>{
     // console.log(item.value)
     // console.log(item.id)
+    let alldatas = document.querySelector("#alldata")
+    alldatas.innerHTML=""
 
     let obj = {
-      "499" : "http://localhost:8000/posts/499",
-      "999" : "http://localhost:8000/posts/999",
-      "1999" : "http://localhost:8000/posts/1999",
-      "2999" : "http://localhost:8000/posts/2999",
-      "3000" : "http://localhost:8000/posts/3000"
+      "40" : "http://localhost:8000/posts/40",
+      "30" : "http://localhost:8000/posts/30",
+      "20" : "http://localhost:8000/posts/30",
+      "10" : "http://localhost:8000/posts/30"
+      
 
     }
-    let arr = ["499","999", "1999","2999","3000"]
+    let arr = ["40","30", "20","10"]
 
     for(let i=0; i<arr.length; i++){
     if(item.id==arr[i]){
@@ -487,14 +497,12 @@ filtercat.forEach((item)=>{
     // console.log(item.id)
 
     let obj = {
-      "499" : "http://localhost:8000/posts/499",
-      "999" : "http://localhost:8000/posts/999",
-      "1999" : "http://localhost:8000/posts/1999",
-      "2999" : "http://localhost:8000/posts/2999",
-      "3000" : "http://localhost:8000/posts/3000"
+      "Women" : "http://localhost:8000/posts/women",
+      "unisex" : "http://localhost:8000/posts/unisex"
+    
 
     }
-    let arr = ["499","999", "1999","2999","3000"]
+    let arr = ["Women","unisex"]
 
     for(let i=0; i<arr.length; i++){
     if(item.id==arr[i]){
@@ -643,7 +651,7 @@ let alldata = async () => {
       if (res) {
         let data = await res.json();
         
-      // console.log(data)
+      console.log(data)
       // alert("cart-data")
       post_in_cart(data)
       
@@ -660,21 +668,21 @@ let alldata = async () => {
 //post data in a cart model
 
   let post_in_cart = async (data) => {
-    console.log(data)
+    // console.log(data[0])
     try {
       let res = await fetch("http://localhost:8000/cart/postincart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // "Authorization": localStorage.getItem("token"),
+          "Authorization": localStorage.getItem("token"),
         },
-        body: JSON.stringify("data"),
+        body: JSON.stringify(data[0]),
       });
       if (res) {
         // let data = await res.json();
         
       // console.log(data)
-      alert("cart-data")
+      alert("Product is Added in Cart")
       // console.log(data,"working")
       //  console.log(data.token)
       }
